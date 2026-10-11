@@ -1,6 +1,6 @@
 # Island Rangoli — Mega Festive Sale motion ad
 
-20-second motion ad for the Island Rangoli festive campaign (Instagram ads).
+15-second motion ad for the Island Rangoli festive campaign (Instagram ads).
 
 | File | Size | Use |
 |---|---|---|
@@ -10,14 +10,16 @@
 Both are H.264 at 30 fps with AAC audio normalised to −14 LUFS.
 
 ## Storyboard
+The FLAT 60% OFF offer applies to **Deep Dwar only**, so the video never presents it as site-wide.
+
 | Time | Scene |
 |---|---|
-| 0–3s | Rangoli mandala blooms ring by ring (white outlines, powder-texture colours), then the Island Rangoli emblem, wordmark and "Evolving Traditional Art" appear |
-| 3–6s | Maroon/gold banner world, hanging diyas drop in and swing, **Mega Festive Sale** and the **Live Now** ribbon |
-| 6–9s | Gold medallion slams in, counter rolls up to **Get FLAT 60% OFF**, marigold petal burst, "Limited Period Offer" |
-| 9–14s | "Iconic Best Sellers" carousel styled like the site's product cards: Deep Dwar, Swarn, Deep Mandapam, Nity Crochet. On each card the old price is struck out, the sale price pops in and QUICK ADD is tapped (→ "Added to cart") |
-| 14–17s | Collage of lifestyle photos: "Light Up Your Space With Regal Colors", plus the five "Why Island Rangoli Stands Out" chips |
-| 17–20s | End card: hero photo, logo, "Flat 60% OFF", pulsing **SHOP NOW** with taps, islandrangoli.com, "PAN India 5–7 days" delivery line |
+| 0–2s | Rangoli mandala blooms ring by ring, then the Island Rangoli emblem and wordmark appear |
+| 2–4.5s | Maroon/gold banner world, hanging diyas drop in, **Mega Festive Sale** and the **Live Now** ribbon |
+| 4.5–7.5s | **Deep Dwar** product shot with the gold badge counting up to **Get FLAT 60% OFF**, and a price chip "Rs. 899 → from Rs. 349" |
+| 7.5–10s | "Iconic Best Sellers" cards at their own site prices: Deep Mandapam (-52%) and Deep Shikha (-30%), each with a QUICK ADD tap |
+| 10–12.5s | Lifestyle collage: "Light Up Your Space With Regal Colors" plus the five "Why Island Rangoli" chips |
+| 12.5–15s | End card: hero photo, logo, "Deep Dwar · Flat 60% OFF", **SHOP NOW**, islandrangoli.com, delivery line |
 
 Brand system, matched from the site: teal `#04709E`, cream `#FFF6E7`, banner maroon `#AD4B34`, gold `#E9A23B` / `#FDD993`, sale red `#E5483B`. Fonts are Quicksand (body and buttons), Italiana (thin display headings) and Playfair Display (bold banner serif).
 

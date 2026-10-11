@@ -7,7 +7,7 @@ import sys, wave
 import numpy as np
 
 SR = 48000
-DUR = 20.0
+DUR = 15.0
 N = int(SR * DUR)
 rng = np.random.default_rng(7)
 L = np.zeros(N); R = np.zeros(N)
@@ -149,19 +149,9 @@ def tanpura(t0, t1, gain=0.18):
         add(s, t, gain * (0.8 if k % 4 == 3 else 0.6), (-.4, -.1, .1, .4)[k % 4], rev=0.5)
         t += 0.5; k += 1
 
-# ---------------- arrangement ----------------
+# ---------------- arrangement (15s cut) ----------------
 BEAT = 0.5
-tanpura(0.0, 19.6)
-
-# S1 bloom: chimes on rings, rising sitar arpeggio
-chimes(0.05, 0.10)
-for i, s in enumerate([0, 4, 7, 12, 16, 19]):
-    sitar(s, 0.15 + i * 0.22, 0.6, 0.32, pan=-0.3 + i * 0.12)
-bell(hz(12, 4), 1.7, 0.25)  # emblem pop
-bell(hz(19, 4), 1.95, 0.18)
-for i in range(8): tick(1.95 + i * 0.03, 2400 + i * 120, 0.03)  # letters
-riser(1.9, 2.95, 0.22)
-whoosh(2.65, 0.6, 0.45)
+tanpura(0.0, 14.6)
 
 def groove(t0, t1, full=True):
     pat = "D.tD.tDt" if full else "D..t..t."
@@ -176,57 +166,68 @@ def groove(t0, t1, full=True):
 def melody(notes, t0, gain=0.42, pan=0.15, octave=2):
     for beat, semi, d in notes: sitar(semi, t0 + beat * BEAT, d * BEAT, gain, pan, octave)
 
-# S2 Mega Festive Sale (3–6)
-impact(3.0, 0.55); chimes(3.0, 0.08)
-groove(3.0, 6.0)
-pad([0, 4, 7], 3.0, 5.0); pad([-3, 2, 7], 5.0, 6.0)
-melody([(0, 0, 1), (1, 2, 1), (2, 4, 1), (3, 7, 1.5), (4.5, 4, .5), (5, 7, 1), (6, 9, 1), (7, 7, 1), (8, 4, 1), (9, 2, 1), (10, 4, .5), (10.5, 2, .5), (11, 0, 1)], 3.0)
-for i, t in enumerate([3.3, 3.46, 3.62]): bell(hz(12 + [0, 4, 7][i], 4), t, 0.12, -0.4 + i * .4, d=.8)  # words land
-whoosh(3.95, 0.45, 0.25, -0.3)  # ribbon
-riser(4.9, 5.98, 0.32)
-whoosh(5.65, 0.4, 0.3)
+# S1 bloom (0–2): chimes, rising sitar arpeggio, emblem bell
+chimes(0.05, 0.10)
+for i, s in enumerate([0, 4, 7, 12, 16, 19]):
+    sitar(s, 0.12 + i * 0.15, 0.5, 0.32, pan=-0.3 + i * 0.12)
+bell(hz(12, 4), 1.25, 0.25)
+bell(hz(19, 4), 1.45, 0.18)
+for i in range(8): tick(1.4 + i * 0.025, 2400 + i * 120, 0.03)
+riser(1.2, 1.98, 0.22)
+whoosh(1.75, 0.55, 0.45)
 
-# S3 FLAT 60% OFF (6–9)
-impact(6.0, 1.0)
-for i in range(14):  # counter roll 0→60, decelerating
-    tick(6.05 + 0.55 * (1 - (1 - i / 13) ** 2), 1400 + i * 90, 0.07, pan=(i % 2 - .5) * .4)
-bell(hz(24, 2), 6.6, 0.3); chimes(6.6, 0.1)
-groove(6.0, 8.5)
-pad([0, 4, 7], 6.0, 8.0); pad([5, 9, 12], 8.0, 9.0)
-melody([(0, 12, 1), (1, 11, .5), (1.5, 9, .5), (2, 7, 1), (3, 9, .5), (3.5, 11, .5), (4, 12, 1), (5, 14, 1), (6, 12, 1.5), (7.5, 9, .5), (8, 7, 1), (9, 4, 1)], 6.0)
-tap(7.0, 0.2)  # limited offer chip
-whoosh(8.45, 0.6, 0.45, 0.3)  # page wipe
+# S2 Mega Festive Sale · Live Now (2–4.5)
+impact(2.0, 0.55); chimes(2.0, 0.08)
+groove(2.0, 4.5)
+pad([0, 4, 7], 2.0, 3.5); pad([-3, 2, 7], 3.5, 4.5)
+melody([(0, 0, 1), (1, 2, 1), (2, 4, 1), (3, 7, 1.5), (4.5, 4, .5)], 2.0)
+for i, t in enumerate([2.4, 2.53, 2.66]): bell(hz(12 + [0, 4, 7][i], 4), t, 0.12, -0.4 + i * .4, d=.8)
+whoosh(2.9, 0.45, 0.25, -0.3)  # ribbon
+riser(3.6, 4.48, 0.32)
+whoosh(4.15, 0.4, 0.3)
 
-# S4 products (9–14): lighter groove, SFX per card
-groove(9.0, 14.0, full=False)
-pad([0, 4, 7], 9.0, 11.0); pad([5, 9, 12], 11.0, 13.0); pad([7, 11, 14], 13.0, 14.0)
-bell(hz(12, 4), 9.0, 0.12)
-F0, FSTEP = 9.45, 1.12
-for i in range(4):
+# S3 Deep Dwar FLAT 60% OFF (4.5–7.4)
+dagga(4.5, 0.9); chimes(4.5, 0.1); bell(hz(12, 4), 4.5, 0.2)
+impact(5.0, 1.0)  # badge slam
+for i in range(14):  # counter roll 0→60
+    tick(5.0 + 0.5 * (1 - (1 - i / 13) ** 2), 1400 + i * 90, 0.07, pan=(i % 2 - .5) * .4)
+bell(hz(24, 2), 5.5, 0.3); chimes(5.5, 0.1)
+ching(5.75)  # Rs. 899 struck through
+groove(4.5, 7.25)
+pad([0, 4, 7], 4.5, 6.5); pad([5, 9, 12], 6.5, 7.5)
+melody([(0, 12, 1), (1, 11, .5), (1.5, 9, .5), (2, 7, 1), (3, 9, .5), (3.5, 11, .5), (4, 12, 1), (5, 14, 1)], 4.5)
+whoosh(7.2, 0.6, 0.45, 0.3)  # page wipe
+
+# S4 best sellers (7.5–10)
+groove(7.5, 10.0, full=False)
+pad([0, 4, 7], 7.5, 9.0); pad([5, 9, 12], 9.0, 10.0)
+bell(hz(12, 4), 7.7, 0.12)
+F0, FSTEP = 8.1, 1.0
+for i in range(2):
     f = F0 + i * FSTEP
-    if i: whoosh(f - 0.34, 0.34, 0.16, 0.4)
-    tick(f + 0.06, 900, 0.08)              # strike-through
-    ching(f + 0.3)                         # sale price pops
-    tap(f + 0.57, 0.3)                     # QUICK ADD
-    pluck([0, 4, 7, 12][i], f + 0.68, 0.22, 0.1, octave=4)  # added-to-cart blip
-for b in range(10): pluck([0, 7, 12, 7][b % 4], 9.0 + b * BEAT, 0.12, -0.3)
-whoosh(13.9, 0.5, 0.45, -0.3)
+    if i: whoosh(f - 0.32, 0.32, 0.16, 0.4)
+    tick(f + 0.06, 900, 0.08)   # strike-through
+    ching(f + 0.27)             # sale price pops
+    tap(f + 0.51, 0.3)          # QUICK ADD
+    pluck([0, 7][i], f + 0.62, 0.22, 0.1, octave=4)
+for b in range(5): pluck([0, 7, 12, 7][b % 4], 7.5 + b * BEAT, 0.12, -0.3)
+whoosh(9.9, 0.5, 0.45, -0.3)
 
-# S5 lifestyle (14–17)
-groove(14.0, 16.9)
-pad([5, 9, 12], 14.0, 15.5); pad([7, 11, 14], 15.5, 17.0)
-melody([(0, 7, 1), (1, 9, 1), (2, 12, 2), (4, 11, .5), (4.5, 9, .5), (5, 7, 1)], 14.3, 0.4)
-for i in range(5): bell(hz([12, 14, 16, 19, 24][i], 4), 15.1 + i * 0.13, 0.11, -0.5 + i * 0.25, d=.7)
-riser(16.1, 17.0, 0.3)
+# S5 lifestyle (10–12.5)
+groove(10.0, 12.4)
+pad([5, 9, 12], 10.0, 11.25); pad([7, 11, 14], 11.25, 12.5)
+melody([(0, 7, 1), (1, 9, 1), (2, 12, 2)], 10.3, 0.4)
+for i in range(5): bell(hz([12, 14, 16, 19, 24][i], 4), 10.85 + i * 0.1, 0.11, -0.5 + i * 0.25, d=.7)
+riser(11.7, 12.48, 0.3)
 
-# S6 end card (17–20)
-impact(17.0, 0.8); chimes(17.05, 0.12)
-groove(17.0, 19.0)
-pad([0, 4, 7], 17.0, 19.6, 0.07)
-melody([(0, 12, 1), (1, 14, 1), (2, 16, 1), (3, 14, .5), (3.5, 12, .5)], 17.0, 0.4)
-tap(18.62, 0.35); ching(18.75, 0.2); tap(19.32, 0.3); ching(19.45, 0.18)
-for k, s in enumerate([0, 7, 12, 16, 19]): sitar(s, 19.0 + k * 0.025, 0.9, 0.3, -0.4 + k * .2)  # final strum
-dagga(19.0, 0.9); bell(hz(24, 2), 19.0, 0.3)
+# S6 end card (12.5–15)
+impact(12.5, 0.8); chimes(12.55, 0.12)
+groove(12.5, 14.0)
+pad([0, 4, 7], 12.5, 14.6, 0.07)
+melody([(0, 12, 1), (1, 14, .5), (1.5, 16, .5)], 12.5, 0.4)
+tap(13.82, 0.35); ching(13.95, 0.2); tap(14.42, 0.3); ching(14.55, 0.18)
+for k, s in enumerate([0, 7, 12, 16, 19]): sitar(s, 14.0 + k * 0.025, 0.8, 0.3, -0.4 + k * .2)  # final strum
+dagga(14.0, 0.9); bell(hz(24, 2), 14.0, 0.3)
 
 # ---------------- reverb + master ----------------
 ir_n = int(1.9 * SR); tt = np.arange(ir_n) / SR
